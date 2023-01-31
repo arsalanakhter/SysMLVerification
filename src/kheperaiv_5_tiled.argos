@@ -1,0 +1,139 @@
+<argos-configuration>
+
+    
+    
+    
+    <framework>
+        
+        <system threads="0" />
+        
+        <experiment length="300" ticks_per_second="10" random_seed="0" />
+    </framework>
+
+    
+    
+    
+    <controllers>
+
+        
+
+        
+        <buzz_controller_kheperaiv id="bck">
+            
+            <actuators>
+                <differential_steering implementation="default" />
+                <range_and_bearing implementation="default" />
+            </actuators>
+            
+            <sensors>
+                <kheperaiv_ground implementation="rot_z_only" />
+                <range_and_bearing implementation="medium" medium="rab" show_rays="true" noise_std_dev="0" />
+                <kheperaiv_proximity implementation="default" show_rays="false" />
+            </sensors>
+            
+            <params bytecode_file="build/buzz/body.bo" debug_file="build/buzz/body.bdb" />
+        </buzz_controller_kheperaiv>
+
+    </controllers>
+
+    
+    
+    
+
+    <loop_functions library="build/src/libcollective_perception_loop_functions" label="collective_perception_loop_functions">
+        <collective_perception>
+            <arena_tiles tile_count_x="500" tile_count_y="500" /> 
+            <fill_ratio_range min="0.8" max="0.8" steps="1" /> 
+            <sensor_probability_range min="0.95" max="0.95" steps="2" />
+            
+            <speed value="10.0" /> 
+            <num_trials value="3" /> 
+            <robot_id prefix="kiv" base_num="0" /> 
+            <robot_disabling amount="1" sim_clock_time="150" /> 
+            <path folder="data" stats="multi_agent_sim_dynamic_stats.pbs" agent_data="multi_agent_sim_dynamic_agent_data.pbad" include_datetime="true" /> 
+            <verbosity level="full" /> 
+            <legacy bool="false" /> 
+            <dac_plugin activate="true">
+                
+                
+                <param num_bins="5" write_period="50" csv_path="C:\Users\User\Documents\GitHub\ResillientSwarms\src/test.csv" />
+            </dac_plugin>
+        </collective_perception>
+    </loop_functions>
+
+    
+    
+    
+    
+    <arena size="5, 5, 1" center="0,0,0.5">
+
+        <floor id="floor" source="loop_functions" pixels_per_meter="200" />
+        
+
+        
+        
+        <box id="wall_north" size="10,0.1,0.5" movable="false">
+            
+            
+            
+            <body position="0,0.9273198961208501,0" orientation="0,0,0" />
+        </box>
+        <box id="wall_south" size="10,0.1,0.5" movable="false">
+            
+            
+            
+            <body position="0,-0.9273198961208501,0" orientation="0,0,0" />
+        </box>
+        <box id="wall_east" size="0.1,10,0.5" movable="false">
+            
+            
+            
+            <body position="0.9273198961208501,0,0" orientation="0,0,0" />
+        </box>
+        <box id="wall_west" size="0.1,10,0.5" movable="false">
+            
+            
+            
+            <body position="-0.9273198961208501,0,0" orientation="0,0,0" />
+        </box>
+
+        
+        <distribute>
+            
+            
+            
+            <position method="uniform" min="-0.9273198961208501,-0.9273198961208501,0" max="0.9273198961208501,0.9273198961208501,0" />
+            <orientation method="uniform" min="0,0,0" max="360,0,0" />
+            <entity quantity="3" max_trials="100" base_num="0">
+                <kheperaiv id="kiv" rab_data_size="50" rab_range="0.7">
+                    <controller config="bck" />
+                </kheperaiv>
+            </entity>
+        </distribute>
+    </arena>
+
+    
+    
+    
+    
+    <physics_engines>
+        
+        <dynamics2d id="dyn2d" />
+    </physics_engines>
+
+    
+    
+    
+    
+    <media>
+        <range_and_bearing id="rab" />
+    </media>
+    
+    
+    
+    
+    <visualization>
+        
+    </visualization>
+
+</argos-configuration>
