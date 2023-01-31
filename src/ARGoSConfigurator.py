@@ -1,12 +1,13 @@
 # Identify the parameters to be changed in ARGoS
 
-import xml.etree.ElementTree as ET
+from lxml import etree
 import os
 
 
 def modify_argos_attribute(tag, attrib, val):
     file_name = 'src/kheperaiv_5_tiled.argos'
-    tree = ET.parse(file_name)
+    parser = etree.XMLParser(remove_blank_text=True)
+    tree = etree.parse(file_name, parser)
     root = tree.getroot()
     for element in root.iter(tag=tag):
         print(element.tag)
@@ -14,7 +15,7 @@ def modify_argos_attribute(tag, attrib, val):
         element.set(attrib, val)
         print(element.attrib)
         with open(file_name, 'wb') as f:
-            tree.write(f)
+            tree.write(f, pretty_print=True)
         break
 
 
