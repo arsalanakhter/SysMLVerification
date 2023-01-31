@@ -5,10 +5,9 @@ import os
 
 
 def modify_argos_attribute(tag, attrib, val):
-    curr_path = os.getcwd()
-    file_name = curr_path+'\kheperaiv_5_tiled.argos'
+    file_name = 'kheperaiv_5_tiled.argos'
     tree = ET.parse(file_name)
-    root = tree.getroot()
+    root = tree.getroot()cd
     for element in root.iter(tag=tag):
         print(element.tag)
         print(element.attrib)
