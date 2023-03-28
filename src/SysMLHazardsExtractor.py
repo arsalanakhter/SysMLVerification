@@ -41,5 +41,15 @@ def extract_hazards_from_sysml_2():
 
 
 
+def extract_hazards_from_sysml_3():
+    file_name = '../project (2).xml'
+    parser = etree.XMLParser(remove_blank_text=True)
+    tree = etree.parse(file_name, parser)
+    root = tree.getroot()
+    for element in root.iter(tag='Stereotype'):
+        if element.attrib['Name'] == 'Hazard':
+            print(element.attrib)
+
+
 if __name__ == '__main__':
-    extract_hazards_from_sysml_2()
+    extract_hazards_from_sysml_3()

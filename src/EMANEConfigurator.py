@@ -1,0 +1,1 @@
+Transmitter Malfunction: Total Shutdown, reduced bitrate, improper handling of info (3 states)
