@@ -21,7 +21,7 @@
           or set to zero, this value is taken from the clock and a warning
           message is displayed.
     -->
-    <experiment length="200" ticks_per_second="10" random_seed="0"/>
+    <experiment length="600" ticks_per_second="10" random_seed="0"/>
   </framework>
   <!-- *************** -->
   <!-- * Controllers * -->
@@ -96,7 +96,7 @@
       <!-- number of tiles for the arena -->
       <fill_ratio_range min="0.95" max="0.95" steps="1"/>
       <!-- range of target fill ratios -->
-      <sensor_probability_range min="0.9" max="0.9" steps="1"/>
+      <sensor_probability_range min="0.9" max="0.9" steps="-2"/>
       <!--
                 range of sensor probabilities
                 `steps` must be an integer:
@@ -106,9 +106,9 @@
             -->
       <speed value="14.14"/>
       <!-- in units of cm/s -->
-      <num_trials value="3"/>
+      <num_trials value="1"/>
       <!-- number of trials to repeat for a specific fill ratio and sensor probability -->
-      <robot_disabling amount="2" sim_clock_time="50">
+      <robot_disabling amount="3" sim_clock_time="300">
         <!-- randomly disable n robots at specified time in seconds -->
         <motion_disable bool="true"/>
         <comms_disable bool="false"/>
@@ -127,7 +127,7 @@
                     write_period: csv file writing period in seconds; use -1 if only write once at the end of each trial
                     csv_path: path to csv file
                 -->
-        <param num_bins="20" write_period="50" csv_path="/home/smerl2/Downloads/SysMLVerification/experiment_output/R5-S0_9-C0_4.csv"/>
+        <param num_bins="30" write_period="1" csv_path="/home/smerl/Documents/SysMLVerification/experiment_output/R5-S0_9-C0_4.csv"/>
       </dac_plugin>
     </collective_perception>
   </loop_functions>

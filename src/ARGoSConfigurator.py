@@ -137,7 +137,7 @@ if __name__ == '__main__':
                 # Modify sensor accuracy in this file
                 modify_argos_attribute(experiment_file, 'sensor_probability_range', 'min', str(s))
                 modify_argos_attribute(experiment_file, 'sensor_probability_range', 'max', str(s))
-                modify_argos_attribute(experiment_file, 'sensor_probability_range', 'steps', str(1))
+                modify_argos_attribute(experiment_file, 'sensor_probability_range', 'steps', str(-2))
                 # Modify communication range
                 modify_argos_attribute(experiment_file, 'kheperaiv', 'rab_range', str(c))
 

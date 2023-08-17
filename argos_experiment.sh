@@ -9,7 +9,7 @@ do
             ITERATION_STRING="R${R}-S0_${S}-C0_${C}.argos"
             echo $ITERATION_STRING 
             cd ~/Downloads/collective_perception/collective_perception_dynamic/
-            ./build/src/run_dynamic_simulations -c /home/smerl2/Downloads/SysMLVerification/experiment_data/${ITERATION_STRING}
+            ./build/src/run_dynamic_simulations -c /home/smerl/Documents/SysMLVerification/experiment_data/${ITERATION_STRING}
         done
     done
 done
